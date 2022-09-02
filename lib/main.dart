@@ -7,6 +7,7 @@ import 'package:flutter_counter/HomePage.dart';
 import 'package:flutter_counter/LoginPage.dart';
 import 'package:flutter_counter/MainActivity.dart';
 import 'package:flutter_counter/Register.dart';
+import 'package:flutter_counter/SearchBar.dart';
 import 'package:flutter_counter/SecondActivity.dart';
 import 'package:flutter_counter/SideNavigationDrawer.dart';
 import 'package:flutter_counter/TabBarLayout.dart';
@@ -38,6 +39,7 @@ void main() {
       'bottom_nav': (context) => BottomNav(),
       'CurvedNav': (context) => CurvedNav(),
       'Collapse': (context) => CollapseToolbar(),
+      'Search': (context) => SearchBar(),
     },
   ));
 }

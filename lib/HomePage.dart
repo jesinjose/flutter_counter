@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_counter/CollapseToolbar.dart';
+import 'package:flutter_counter/SearchBar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'BottomnavigationBar.dart';
@@ -23,7 +24,8 @@ class _HomePageState extends State<HomePage> {
     'Navigation Bar',
     'Bottom Navigation',
     'Curved Bottom Navigation',
-    'Collapse Toolbar'
+    'Collapse Toolbar',
+    'Toolbar Search'
   ];
 
   @override
@@ -32,6 +34,7 @@ class _HomePageState extends State<HomePage> {
           title: Text('Home Page'),
         ),
         body: ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemBuilder: (context, index) => Container(
             padding: EdgeInsets.only(left: 10, right: 10, top: 10),
             child: Card(
@@ -94,6 +97,12 @@ class _HomePageState extends State<HomePage> {
         {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => CollapseToolbar()));
+          break;
+        }
+      case 'Toolbar Search':
+        {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SearchBar()));
         }
     }
   }
