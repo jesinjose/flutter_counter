@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_counter/APIList.dart';
+import 'package:flutter_counter/CollapseToolbar.dart';
 import 'package:flutter_counter/DataPage.dart';
 import 'package:flutter_counter/FoodList.dart';
 import 'package:flutter_counter/HomePage.dart';
@@ -36,6 +37,7 @@ void main() {
       'navigationDrawer': (context) => NavigationDrawerPage(),
       'bottom_nav': (context) => BottomNav(),
       'CurvedNav': (context) => CurvedNav(),
+      'Collapse': (context) => CollapseToolbar(),
     },
   ));
 }

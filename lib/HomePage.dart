@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_counter/CollapseToolbar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'BottomnavigationBar.dart';
@@ -21,7 +22,8 @@ class _HomePageState extends State<HomePage> {
     'Cart Icon Counter',
     'Navigation Bar',
     'Bottom Navigation',
-    'Curved Bottom Navigation'
+    'Curved Bottom Navigation',
+    'Collapse Toolbar'
   ];
 
   @override
@@ -86,6 +88,12 @@ class _HomePageState extends State<HomePage> {
         {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CurvedNav()));
+          break;
+        }
+      case 'Collapse Toolbar':
+        {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => CollapseToolbar()));
         }
     }
   }

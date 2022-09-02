@@ -43,70 +43,79 @@ class _DataPageState extends State<DataPage> {
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: data.data!.length,
-                itemBuilder: (context, index) => InkWell(
-                  onTap: (){
-                    print(data.data![index].firstName);
-                    Fluttertoast.showToast(
-                        msg: data.data![index].firstName.toString(),
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0
-                    );
-                  },
-                  child: Container(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 120,
-                                height: 120,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      image:
-                                          NetworkImage(data.data![index].avatar!),
-                                      fit: BoxFit.fill),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      data.data![index].firstName!,
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'RobotoMono'),
+                    physics: BouncingScrollPhysics(),
+                    itemCount: data.data!.length,
+                    itemBuilder: (context, index) => InkWell(
+                          onTap: () {
+                            print(data.data![index].firstName);
+                            Fluttertoast.showToast(
+                                msg: data.data![index].firstName.toString(),
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          },
+                          child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    height: 120,
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black,
+                                            blurRadius: 7,
+                                            offset: Offset(
+                                              4,
+                                              2,
+                                            ))
+                                      ],
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              data.data![index].avatar!),
+                                          fit: BoxFit.fill),
                                     ),
-                                    Padding(
-                                        padding: EdgeInsets.fromLTRB(5, 0, 0, 5)),
-                                    Text(data.data![index].lastName!,
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'RobotoMono')),
-                                  ],
-                                ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          data.data![index].firstName!,
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'RobotoMono'),
+                                        ),
+                                        Padding(
+                                            padding:
+                                                EdgeInsets.fromLTRB(5, 0, 0, 5)),
+                                        Text(data.data![index].lastName!,
+                                            style: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'RobotoMono')),
+                                      ],
+                                    ),
+                                  ),
+                                  Text(data.data![index].email!,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.normal,
+                                          fontFamily: 'RobotoMono'))
+                                ],
                               ),
-                              Text(data.data![index].email!,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.normal,
-                                      fontFamily: 'RobotoMono'))
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                )),
+                        )),
       ),
     );
   }
