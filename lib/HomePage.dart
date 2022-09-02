@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'BottomnavigationBar.dart';
 import 'CurvedNav.dart';
+import 'PageView.dart';
 import 'SideNavigationDrawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +26,8 @@ class _HomePageState extends State<HomePage> {
     'Bottom Navigation',
     'Curved Bottom Navigation',
     'Collapse Toolbar',
-    'Toolbar Search'
+    'Toolbar Search',
+    'View Pager'
   ];
 
   @override
@@ -103,6 +105,12 @@ class _HomePageState extends State<HomePage> {
         {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => SearchBar()));
+          break;
+        }
+      case 'View Pager':
+        {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SliderPage()));
         }
     }
   }

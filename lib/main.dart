@@ -17,6 +17,7 @@ import 'package:flutter_counter/testAPI.dart';
 import 'BadgeCounter.dart';
 import 'BottomnavigationBar.dart';
 import 'CurvedNav.dart';
+import 'PageView.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -40,6 +41,7 @@ void main() {
       'CurvedNav': (context) => CurvedNav(),
       'Collapse': (context) => CollapseToolbar(),
       'Search': (context) => SearchBar(),
+      'SliderPage': (context) => SliderPage(),
     },
   ));
 }
