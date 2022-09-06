@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_counter/CollapseToolbar.dart';
+import 'package:flutter_counter/ImagePicker.dart';
 import 'package:flutter_counter/SearchBar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -27,7 +28,8 @@ class _HomePageState extends State<HomePage> {
     'Curved Bottom Navigation',
     'Collapse Toolbar',
     'Toolbar Search',
-    'View Pager'
+    'View Pager',
+    'Image Picker'
   ];
 
   @override
@@ -111,6 +113,13 @@ class _HomePageState extends State<HomePage> {
         {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => SliderPage()));
+          break;
+        }
+      case 'Image Picker':
+        {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ImagePick()));
+          break;
         }
     }
   }

@@ -1,8 +1,22 @@
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_counter/Models/LoginModel.dart';
 
-class LoginPage extends StatelessWidget {
+import 'SharedPreference/SharedPreference.dart';
+
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController _userName = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  late String name;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +42,11 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     TextField(
+                      textCapitalization: TextCapitalization.words,
+                      controller: _userName,
+                      onChanged: (name) => setState(() {
+                        this.name = name;
+                      }),
                       decoration: InputDecoration(
                           fillColor: Colors.grey.shade100,
                           filled: true,
@@ -39,6 +58,7 @@ class LoginPage extends StatelessWidget {
                       height: 30,
                     ),
                     TextField(
+                        controller: _password,
                         obscureText: true,
                         decoration: InputDecoration(
                             filled: true,
@@ -61,7 +81,12 @@ class LoginPage extends StatelessWidget {
                           radius: 30,
                           backgroundColor: Color(0xff4c505b),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              LoginModel model =
+                                  LoginModel(_userName.text, _password.text);
+                              String inputData = jsonEncode(model);
+                              await Preference.setUser(inputData);
+                            },
                             icon: Icon(
                               Icons.arrow_forward,
                               color: Colors.white,
@@ -70,12 +95,14 @@ class LoginPage extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.pushNamed(context, 'register');
                             },
                             child: Text(
@@ -106,5 +133,31 @@ class LoginPage extends StatelessWidget {
     );
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    name = (Preference.getUsername() != null ? Preference.getUsername() : '')!;
+    late LoginModel model;
+    late Map<String, dynamic> json = Map();
+    if (name.isNotEmpty && json.isNotEmpty) {
+      json = jsonDecode(name);
+      model = LoginModel.fromJson(json);
+      if (model != null) {
+        _userName.value = TextEditingValue(text: model.username);
+        _password.value = TextEditingValue(text: model.password);
+      }
+    }
+  }
+}
 
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: newValue.text.toUpperCase(),
+      selection: newValue.selection,
+    );
+  }
 }

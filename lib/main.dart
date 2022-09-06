@@ -11,18 +11,24 @@ import 'package:flutter_counter/SearchBar.dart';
 import 'package:flutter_counter/SecondActivity.dart';
 import 'package:flutter_counter/SideNavigationDrawer.dart';
 import 'package:flutter_counter/TabBarLayout.dart';
+import 'package:flutter_counter/UIDesign.dart';
 import 'package:flutter_counter/UserList.dart';
 import 'package:flutter_counter/testAPI.dart';
 
 import 'BadgeCounter.dart';
 import 'BottomnavigationBar.dart';
 import 'CurvedNav.dart';
+import 'ImagePicker.dart';
 import 'PageView.dart';
+import 'SharedPreference/SharedPreference.dart';
 
-void main() {
-  runApp(MaterialApp(
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Preference.init();
+
+   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: 'homePage',
+    initialRoute: 'login',
     routes: {
       '/home': (context) => MainActivity(),
       '/second': (context) => SecondActivity(),
@@ -42,8 +48,11 @@ void main() {
       'Collapse': (context) => CollapseToolbar(),
       'Search': (context) => SearchBar(),
       'SliderPage': (context) => SliderPage(),
+      'imagePick': (context) => ImagePick(),
+      'UIDesign': (context) => UIDesign(),
     },
   ));
+
 }
 /*void main() {
   runApp(MaterialApp(
